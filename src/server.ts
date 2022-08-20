@@ -1,14 +1,9 @@
-import { proxy } from "https://deno.land/x/opineHttpProxy@3.0.1/mod.ts";
-import {
-	opine,
-	urlencoded,
-	json,
-} from "https://deno.land/x/opine@2.0.2/mod.ts";
+import { proxy, opine, urlencoded, json } from "./deps.ts";
 import { checkAuth, login } from "./auth.ts";
 import { serviceAddress } from "./env.ts";
 
 // Loads HTML file for login page
-const loginPageHtml = Deno.readTextFileSync("./login.html");
+const loginPageHtml = Deno.readTextFileSync("./public/login.html");
 
 // Initializes opine
 const app = opine();
@@ -21,10 +16,8 @@ app.use(urlencoded());
 app.use(async (req, res, next) => {
 	// Check if user is auththorized, if so continues to request
 	if (await checkAuth(req)) next();
-
 	// If url starts with /auth/login it continues (to be able pass through error messages)
 	else if (req.url.startsWith("/auth/login")) next();
-
 	// Else redirects to login page
 	else res.redirect("/auth/login");
 });
