@@ -11,7 +11,7 @@ This is proxy that requires user to enter a password to proxy website. It's litt
 	- You can change left side of port to match port you like the most.
 	- **PASSWORD** is here in plain text. Quotes and backslahes may be problematic.
 	- **SERVICE_ADDRESS** is address of your service. In docker-compose you can use name of service instead of ip address.
-	- **LOGIN_TIME** is time for token to expire.
+	- **LOGIN_TIME** is time in seconds for token to expire.
 
 ## Development
 ### Requirements
